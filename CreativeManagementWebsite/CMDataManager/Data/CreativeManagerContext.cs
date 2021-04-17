@@ -11,5 +11,6 @@ namespace CMDataManager.Data
         }
 
         public DbSet<Project> Projects { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
