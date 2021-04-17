@@ -5,6 +5,16 @@ namespace CMDataManager.Data
 {
     public class MockCreativeManagerRepo : ICreativeManagerRepo
     {
+        public void CreateProject(Project project)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void DeleteProject(Project project)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public IEnumerable<Project> GetAllProjects()
         {
             var projects = new List<Project>
@@ -21,6 +31,16 @@ namespace CMDataManager.Data
         public Project GetProjectById(int id)
         {
             return new Project { Id = 0, FinishedProject = false, Name = "New Project", ProjectType = "Knitting" };
+        }
+
+        public bool SaveChanges()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void UpdateProject(Project project)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
