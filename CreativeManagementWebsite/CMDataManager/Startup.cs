@@ -1,14 +1,14 @@
+using System;
 using CMDataManager.Data;
+using CMDataManager.Handlers;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
-using System;
 using Newtonsoft.Json.Serialization;
-using Microsoft.AspNetCore.Authentication;
-using CMDataManager.Handlers;
 
 namespace CMDataManager
 {

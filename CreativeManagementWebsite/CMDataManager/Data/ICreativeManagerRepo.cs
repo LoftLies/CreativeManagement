@@ -1,5 +1,5 @@
-﻿using CMDataManager.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using CMDataManager.Models;
 
 namespace CMDataManager.Data
 {

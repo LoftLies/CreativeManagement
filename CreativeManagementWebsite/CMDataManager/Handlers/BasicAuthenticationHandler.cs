@@ -47,7 +47,8 @@ namespace CMDataManager.Handlers
                 {
                     return AuthenticateResult.Fail("Invalid name or password");
                 }
-                else {
+                else
+                {
                     var claims = new[] { new Claim(ClaimTypes.Name, user.Name) };
                     var identity = new ClaimsIdentity(claims, Scheme.Name);
                     var principal = new ClaimsPrincipal(identity);
