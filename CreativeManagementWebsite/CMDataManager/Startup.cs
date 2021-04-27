@@ -1,12 +1,13 @@
+using System;
 using CMDataManager.Data;
+using CMDataManager.Handlers;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
-using AutoMapper;
-using System;
 using Newtonsoft.Json.Serialization;
 
 namespace CMDataManager
@@ -23,19 +24,22 @@ namespace CMDataManager
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication("BasicAuthentication").AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+
             var connectionString = Configuration.GetConnectionString("CreativityManagerConnection");
             connectionString += $"Password={Configuration["DBPass"]}";
             services.AddDbContext<CreativeManagerContext>(opt => opt.UseSqlServer(connectionString));
 
-            services.AddControllersWithViews().AddNewtonsoftJson(s =>
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(s =>
             {
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddScoped<ICreativeManagerRepo, SqlCreativeManagerRepo>();
 
-            services.AddScoped<ICreativeManagerRepo, SqlCreativeManagerRepo>(); 
         }
-
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -49,6 +53,7 @@ namespace CMDataManager
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

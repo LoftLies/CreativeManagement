@@ -3,11 +3,13 @@ using AutoMapper;
 using CMDataManager.Data;
 using CMDataManager.DTOs;
 using CMDataManager.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CMDataManager.Controllers
 {
+    [Authorize]
     [Route("api/projects")]
     [ApiController]
     public class ProjectsController : ControllerBase
