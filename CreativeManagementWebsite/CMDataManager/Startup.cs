@@ -26,9 +26,7 @@ namespace CMDataManager
         {
             services.AddAuthentication("BasicAuthentication").AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
-            var connectionString = Configuration.GetConnectionString("CreativityManagerConnection");
-            connectionString += $"Password={Configuration["DBPass"]}";
-            services.AddDbContext<CreativeManagerContext>(opt => opt.UseSqlServer(connectionString));
+            services.AddDbContext<CreativeManagerContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("CreativityManagerConnection")));
 
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(s =>
