@@ -1,2 +1,2 @@
 # CreativeManagement
-Creating a website for managing my creative projects
+Creating a website for managing creative stuff
